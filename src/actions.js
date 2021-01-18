@@ -2,8 +2,6 @@ import types from './actionsTypes';
 import blogApi from './services/blogApi';
 import { isValidUser, getNewFavorites } from './helpers';
 
-export const updateArticles = (list) => ({ type: types.articles, articles: list });
-export const updateArticlesCount = (count) => ({ type: types.articlesCount, articlesCount: count });
 export const updateArticle = (artic) => ({ type: types.article, article: artic });
 export const updateUser = (data) => ({ type: types.user, user: data });
 export const changeFavorites = (slugs) => ({ type: types.favorites, favorites: slugs });
@@ -39,15 +37,12 @@ export const getArticles = (currentPage) => (dispatch) => {
     const previousPagesCount = currentPage - 1;
     const offset = previousPagesCount * articlesPerPageCount;
 
-    blogApi.getArticlesList(offset)
+    return blogApi.getArticlesList(offset)
     .then(res => {
-        dispatch(updateArticles(res.articles));
-        dispatch(updateArticlesCount(res.articlesCount));
         dispatch(changeLoading(false));
+        return res;
     })
     .catch(err => {
-        dispatch(updateArticles([]));
-        dispatch(updateArticlesCount(null));
         dispatch(changeLoading(false));
         dispatch(changeError(err.message));
     });

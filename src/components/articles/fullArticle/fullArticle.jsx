@@ -7,7 +7,7 @@ import articleClasses from './fullArticle.module.scss';
 import * as actions from '../../../actions';
 import Article from '../article/article';
 
-const FullArticle = ({ slug, getArticle, changeLoading, changeError, user, favorites }) => {
+const FullArticle = ({ slug, getArticle, changeLoading, changeError, user }) => {
     
     const [ article, setArticle ] = useState(null);
 
@@ -26,7 +26,7 @@ const FullArticle = ({ slug, getArticle, changeLoading, changeError, user, favor
 
     const btns = user && article ? article.author.username === user.username : false;
 
-    const fullArticle = article ? <Article item={article} fullText={article.body} btns={btns} favorites={favorites}/> : null;
+    const fullArticle = article ? <Article item={article} fullText={article.body} btns={btns}/> : null;
     
     return (
         <div className={articleClasses.article}>
@@ -45,7 +45,6 @@ export default connect(mapStateToProps, actions)(FullArticle);
 FullArticle.defaultProps = {
     slug: null,
     user: null,
-    favorites: [],
     getArticle: (() => {}),
     changeLoading: (() => {}),
     changeError: (() => {}),
@@ -54,7 +53,6 @@ FullArticle.defaultProps = {
 FullArticle.propTypes = {
     slug: PropTypes.string,
     user: PropTypes.instanceOf(Object),
-    favorites: PropTypes.arrayOf(PropTypes.string),
     getArticle: PropTypes.func,
     changeLoading: PropTypes.func,
     changeError: PropTypes.func,

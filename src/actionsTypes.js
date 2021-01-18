@@ -1,8 +1,6 @@
 const actionsTypes = {
     user: 'USER',
     isLogin: 'ISLOGIN',
-    articles: 'ARTICLES',
-    articlesCount: 'ARTICLES_COUNT',
     article: 'ARTICLE',
     favorites: 'FAVORITES',
     loading: 'LOADING',

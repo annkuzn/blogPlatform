@@ -69,6 +69,7 @@ const Article = ({ item, fullText, btns, user, favorites, changeFavoriteStatus})
 
 const mapStateToProps = (state) => ({
 	loading: state.loading,
+	favorites: state.articles.favorites,
 	user: state.user.userData,
 });
 

@@ -12,7 +12,7 @@ import noAvatarImg from '../../img/noAvatar.jpg';
 
 const Header = ({ user }) => {
 
-    const { mainPage, editProfile, signIn, signUp, createArticle, logOut } = routePaths;
+    const { articles, editProfile, signIn, signUp, createArticle, logOut } = routePaths;
 
     const imageSrc = user ? (user.image || noAvatarImg) : null;
 
@@ -36,7 +36,7 @@ const Header = ({ user }) => {
     
     return (
         <header className={headerClasses.header}>
-            <Link to={mainPage} className={headerClasses.title} >Realworld Blog</Link>
+            <Link to={articles} className={headerClasses.title} >Realworld Blog</Link>
             <div>
                 {createArticleBtn}
                 {userLink}

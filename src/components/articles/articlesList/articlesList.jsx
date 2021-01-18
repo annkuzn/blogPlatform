@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Pagination } from 'antd';
@@ -8,14 +8,24 @@ import * as actions from '../../../actions';
 
 import Article from '../article/article';
 
-const ArticlesList = ({ articles, articlesCount, getArticles, currentPage, loading, changeCurrentPage, changeLoading, changeError, favorites }) => {
+const ArticlesList = ({ getArticles, currentPage, loading, changeCurrentPage, changeLoading, changeError }) => {
 	
+	const [ articles, setArticles ] = useState(null);
+	const [ articlesCount, setArticlesCount] = useState(null);
+
 	useEffect(() => {
-		getArticles(currentPage);
+		changeLoading(true);
+
+		getArticles(currentPage)
+		.then(res => {
+			setArticles(res.articles);
+			setArticlesCount(res.articlesCount);
+		});
+
 		return () => {
             changeError(false);
         };
-	}, [getArticles, currentPage, changeError]);
+	}, [getArticles, currentPage, changeError, changeLoading]);
 
 	const paginationChangeHandler = (page) => {
 		changeLoading(true);
@@ -25,7 +35,7 @@ const ArticlesList = ({ articles, articlesCount, getArticles, currentPage, loadi
 	const list = articles ? articles.map(item => {
 		const key = `${item.slug}${item.createdAt}`;
 
-		return <li key={key}><Article item={item} favorites={favorites}/></li>
+		return <li key={key}><Article item={item} /></li>
 	}) : null;
 
 	const pagination = <Pagination 
@@ -50,8 +60,6 @@ const ArticlesList = ({ articles, articlesCount, getArticles, currentPage, loadi
 };
 
 const mapStateToProps = (state) => ({
-	articles: state.articles.articleList,
-	articlesCount: state.articles.articlesCount,
 	favorites: state.articles.favorites,
 	currentPage: state.currentPage,
 	loading: state.loading,
@@ -60,11 +68,8 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, actions)(ArticlesList);
 
 ArticlesList.defaultProps = {
-	articles: [],
-	articlesCount: 0,
 	getArticles: (() => {}),
 	currentPage: 1,
-	favorites: [],
 	loading: true,
 	changeError: (() => {}),
 	changeCurrentPage: (() => {}),
@@ -72,11 +77,8 @@ ArticlesList.defaultProps = {
 };
 
 ArticlesList.propTypes = {
-	articles: PropTypes.arrayOf(PropTypes.object),
-	articlesCount: PropTypes.number,
 	getArticles: PropTypes.func,
 	currentPage: PropTypes.number,
-	favorites: PropTypes.arrayOf(PropTypes.string),
 	loading: PropTypes.bool,
 	changeError: PropTypes.func,
 	changeCurrentPage: PropTypes.func,
