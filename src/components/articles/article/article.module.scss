@@ -1,0 +1,112 @@
+.article {
+    display: grid;
+    grid-template-columns: auto 1fr auto 5.5%;
+    grid-template-rows: 28px 20px auto auto;
+    min-height: 140px;
+    column-gap: 12px;
+    row-gap: 4px;
+    grid-template-areas: 
+    "title favorites author img"
+    "tags tags data img"
+    "text text buttons buttons"
+    "fullText fullText fullText fullText";
+    padding: 15px 14px 24px 19px;
+    filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.15));
+    border-radius: 5px;
+    background-color: #FFF;
+}
+
+.title {
+    grid-area: title;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    margin: 0;
+    font-size: 20px;
+    font-weight: normal;
+    -webkit-line-clamp: 1;
+    color: #1890FF;
+    overflow: hidden;
+}
+
+.favorites {
+    grid-area: favorites;
+    display: flex;
+    align-items: center;
+}
+
+.favoritesBtn {
+    background: none;
+    border: none;
+
+    &:hover, &:active, &:focus {
+        outline: none;
+        cursor: pointer;
+    }
+
+    &[disabled] {
+        cursor: initial;
+    }
+}
+
+.favoritesCount {
+    font-size: 12px;
+    margin-left: 5px;
+    cursor: default;
+}
+
+.author {
+    grid-area: author;
+    text-align: right;
+    overflow: hidden;
+}
+
+.img {
+    grid-area: img;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.tags {
+    grid-area: tags;
+    display: flex;
+    list-style: none;
+}
+
+.tag {
+    height: 20px;
+    padding: 2px 5px 3px;
+    margin-right: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+    font-size: 12px;
+}
+
+.data {
+    grid-area: data;
+    text-align: right;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.text {
+    grid-area: text;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    max-width: 682px;
+    max-height: 45px;
+    align-self: start;
+    -webkit-line-clamp: 2;
+    font-size: 12px;
+    line-height: 22px;
+    overflow: hidden;
+}
+
+.fullText {
+    grid-area: fullText;
+    padding-right: 42px;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 250px;
+    white-space: pre-wrap;
+}

@@ -1,0 +1,45 @@
+.modal {
+    position: absolute;
+    padding: 16px 16px 12px 40px;
+    right: -175px;
+    width: 240px;
+    top: 0;
+    text-align: start;
+    background-color: white;
+    border-radius: 4px;
+    filter: drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.15));
+}
+
+.modalSpan {
+    margin-left: 9px;
+    font-size: 14px;
+}
+
+.modalBtns {
+    margin-top: 12px;
+    text-align: end;
+}
+.modalBtn {
+    margin-left: 9px;
+    padding: 0;
+    width: 34px;
+    height: 24px;
+    border-radius: 4px;
+
+    & > span {
+        font-size: 14px;
+    }
+}
+
+.buttons {
+    grid-area: buttons;
+    position: relative;
+    align-self: center;
+    text-align: end;
+}
+
+.btn {
+    margin-left: 12px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}

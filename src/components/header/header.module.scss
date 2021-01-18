@@ -1,0 +1,61 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-height: 80px;
+    padding: 16px 22px 13px;
+    background: #FFF;
+}
+
+.title {
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.75);
+
+    &:hover, &:active, &:focus {
+        color: rgba(0, 0, 0, 0.75);
+    }
+}
+
+.user {
+    display: inline-block;
+}
+
+.link {
+    display: inline-block;
+    margin-left: 27px;
+    padding: 6px 18px 10px;
+    text-decoration: none;
+    transition: 0.2s;
+    color: rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+
+    &:hover, &:active, &:focus {
+        color: black;
+    }
+
+    &[data-btn = "Log Out"] {
+        border: 1px solid black;
+    }
+
+    &[data-btn = "Sign Up"], &[data-btn = "Create"] {
+        color: #52C41A;
+        border: 1px solid #52C41A;
+
+        &:hover, &:active, &:focus {
+            background-color: #52C41A;
+            color: #FFF;
+        }
+    }
+
+    &[data-btn = "Create"] {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+}
+
+.img {
+    height: 46px;
+    width: 46px;
+    border-radius: 50%;
+}
