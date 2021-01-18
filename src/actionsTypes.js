@@ -4,7 +4,6 @@ const actionsTypes = {
     article: 'ARTICLE',
     favorites: 'FAVORITES',
     loading: 'LOADING',
-    currentPage: 'CURRENT_PAGE',
     error: 'ERROR',
 };
 

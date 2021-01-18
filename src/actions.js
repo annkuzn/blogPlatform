@@ -6,7 +6,6 @@ export const updateArticle = (artic) => ({ type: types.article, article: artic }
 export const updateUser = (data) => ({ type: types.user, user: data });
 export const changeFavorites = (slugs) => ({ type: types.favorites, favorites: slugs });
 export const changeLoading = (bool) => ({ type: types.loading, loading: bool });
-export const changeCurrentPage = (page) => ({ type: types.currentPage, currentPage: page });
 export const changeError = (err) => ({ type: types.error, error: err });
 export const changeLogin = (bool) => ({ type: types.isLogin, isLogin: bool });
 

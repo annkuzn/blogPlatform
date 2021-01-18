@@ -8,10 +8,11 @@ import * as actions from '../../../actions';
 
 import Article from '../article/article';
 
-const ArticlesList = ({ getArticles, currentPage, loading, changeCurrentPage, changeLoading, changeError }) => {
+const ArticlesList = ({ getArticles, loading, changeLoading, changeError }) => {
 	
 	const [ articles, setArticles ] = useState(null);
 	const [ articlesCount, setArticlesCount] = useState(null);
+	const [ currentPage, setCurrentPage ] = useState(1);
 
 	useEffect(() => {
 		changeLoading(true);
@@ -29,7 +30,7 @@ const ArticlesList = ({ getArticles, currentPage, loading, changeCurrentPage, ch
 
 	const paginationChangeHandler = (page) => {
 		changeLoading(true);
-		changeCurrentPage(page);
+		setCurrentPage(page);
     };
 
 	const list = articles ? articles.map(item => {
@@ -61,7 +62,6 @@ const ArticlesList = ({ getArticles, currentPage, loading, changeCurrentPage, ch
 
 const mapStateToProps = (state) => ({
 	favorites: state.articles.favorites,
-	currentPage: state.currentPage,
 	loading: state.loading,
 });
 
@@ -69,18 +69,14 @@ export default connect(mapStateToProps, actions)(ArticlesList);
 
 ArticlesList.defaultProps = {
 	getArticles: (() => {}),
-	currentPage: 1,
 	loading: true,
 	changeError: (() => {}),
-	changeCurrentPage: (() => {}),
 	changeLoading: (() => {}),
 };
 
 ArticlesList.propTypes = {
 	getArticles: PropTypes.func,
-	currentPage: PropTypes.number,
 	loading: PropTypes.bool,
 	changeError: PropTypes.func,
-	changeCurrentPage: PropTypes.func,
 	changeLoading: PropTypes.func,
 };
