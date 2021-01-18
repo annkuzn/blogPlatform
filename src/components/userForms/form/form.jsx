@@ -62,7 +62,6 @@ const Form = ({ btn, inputs, token, handleData, handleDataApi, user, changeError
     });
 
     const formSubmitHandler = (data) => {
-        console.log(data)
         changeError(false);
         setDisabledBtn(true);
         handleData(data, handleDataApi, token)
@@ -75,11 +74,9 @@ const Form = ({ btn, inputs, token, handleData, handleDataApi, user, changeError
             setUpdateInputs(!updateInputs);
         });
     };
-        const errh = (data) => {
-            console.log(data)
-        }
+
     return (
-        <form onSubmit={handleSubmit(formSubmitHandler, errh)}>
+        <form onSubmit={handleSubmit(formSubmitHandler)}>
             {inputList}
             <Button type='primary' htmlType='submit' size='large' className={formClasses.btn} disabled={disabledBtn}>{btn}</Button>
         </form>
