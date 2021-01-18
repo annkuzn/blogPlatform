@@ -50,6 +50,7 @@ const allInputs = {
         label: 'I agree to the processing of my personal information',
         checked: true,
         name: 'processPersonalInform',
+        schema: yup.string().matches(true, 'Consent is required'),
     },
     image: {
         label: 'Avatar image (url)',
