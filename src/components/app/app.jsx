@@ -11,7 +11,7 @@ import * as actions from '../../actions';
 import Header from '../header/header';
 import RouteSwitch from '../routes/routeSwitch';
 
-const App = ({ loading, error, updateUserData, changeError }) => {
+const App = ({ error, loading, changeError, updateUserData }) => {
 
     useEffect(() => {
         if (localStorage.user) {
@@ -22,47 +22,46 @@ const App = ({ loading, error, updateUserData, changeError }) => {
     const loader = loading ? <Spin size='large' className={appClasses.spin}/> : null;
     const errorMessage = error ? (
                             <Alert 
+                                closable
                                 type='error' 
                                 message='Error' 
                                 description={error} 
                                 style={{padding: '20px 30px'}}
                                 className={appClasses.error}
-                                closable
                                 afterClose={() => {changeError(false)}}
                                 />
                         ) : null;
 
     return (
-        <>
-            <Router>
-                <Header />
-                {loader}
-                {errorMessage}
-                <RouteSwitch />
-            </Router>
-        </>
-    )};
+        <Router>
+            <Header />
+            {loader}
+            {errorMessage}
+            <RouteSwitch />
+        </Router>
+    );
+};
 
 const mapStateToProps = (state) => ({
-    loading: state.loading,
     error: state.error,
+    loading: state.loading,
 });
 
 export default connect(mapStateToProps, actions)(App);
 
 App.defaultProps = {
-    loading: true,
     error: false,
-    updateUserData: (() => {}),
+    loading: true,
     changeError: (() => {}),
+    updateUserData: (() => {}),
 };
 
 App.propTypes = {
-    loading: PropTypes.bool,
     error: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.bool,
     ]),
-    updateUserData: PropTypes.func,
+    loading: PropTypes.bool,
     changeError: PropTypes.func,
+    updateUserData: PropTypes.func,
 };
